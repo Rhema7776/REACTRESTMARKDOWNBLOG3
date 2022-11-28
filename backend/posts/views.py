@@ -5,6 +5,6 @@ from .serializers import PostSerializer
 
 # Create your views here.
 class PostListView(generics.ListAPIView):
-    permission_classes = [permission.AllowAny]
+    permission_classes = [permissions.AllowAny]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
