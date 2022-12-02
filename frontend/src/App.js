@@ -21,9 +21,9 @@ function App() {
             <Routes>
               <Route index element={<PostList/>}/>
               <Route path = '/create' element={<PostCreate/>}/>
-              <Route path = '/post/:postSlug'  index element={<PostDetail/>}/>
-              <Route path = '/post/:postSlug/update'  index element={<PostUpdate/>}/>
-              <Route path = '/post/:postSlug/delete'  index element={<PostDelete/>}/>
+              <Route path = '/posts/:postSlug'  index element={<PostDetail/>}/>
+              <Route path = '/posts/:postSlug/update'  index element={<PostUpdate/>}/>
+              <Route path = '/posts/:postSlug/delete'  index element={<PostDelete/>}/>
             </Routes>
           </Layout>
        

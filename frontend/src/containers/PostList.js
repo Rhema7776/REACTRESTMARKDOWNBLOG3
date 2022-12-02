@@ -42,7 +42,9 @@ const PostList = () => {
               <Item.Image size='small' src={post.thumbnail} />
     
               <Item.Content>
-                <Item.Header as='a'>{post.title}</Item.Header>
+                <NavLink to={`/posts/${post.slug}`}>
+                <Item.Header as='h3'>{post.title}</Item.Header>
+                </NavLink>                
                 <Item.Description>{post.content}</Item.Description>
               </Item.Content>
           </Item>
