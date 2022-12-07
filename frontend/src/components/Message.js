@@ -7,6 +7,15 @@ export default ({ message, info, positive, warning, negative }) => (
   </Message>
 )
 
+
+
+// const Message = ({ message, info, positive, warning, negative }) => {
+//   return (
+//     <Message info positive warning negative>{message}</Message>
+//   )
+// }
+
+// export default Message
 // import Alert from 'react-bootstrap/Alert';
 
 // function LinksExample() {

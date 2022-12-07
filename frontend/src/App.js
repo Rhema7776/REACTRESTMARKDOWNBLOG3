@@ -2,16 +2,15 @@ import React from 'react';
 
 import 'semantic-ui-css/semantic.min.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {createBrowserHistory} from "history";
 
-
+import {history} from './helpers';
 import Layout from './containers/Layout';
 import PostList from './containers/PostList';
 import PostCreate from './containers/PostCreate';
 import PostDetail from './containers/PostDetail';
 import PostDelete from './containers/PostDelete';
 import PostUpdate from './containers/PostUpdate';
-const history = createBrowserHistory();
+
 
 function App() {
   return (
