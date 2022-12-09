@@ -1,6 +1,6 @@
 import React, {useRef, useState } from 'react'
 import {Header, Button, Checkbox, Form } from 'semantic-ui-react'
-import {Message} from '../components/Message';
+import Message from '../components/Message';
 import axios from 'axios';
 import {history} from '../helpers'
 
@@ -18,9 +18,6 @@ const PostCreate = () => {
     e.preventDefault();
     setLoading(true);
     // console.log(title)
-    // console.log(markdown)
-    // console.log(thumbnail)
-
     const formData = new FormData()
     formData.append("thumbnail", thumbnail)
     formData.append("title", title)
@@ -29,7 +26,8 @@ const PostCreate = () => {
     axios
       .post('http://127.0.0.1:8000/api/posts/create/', formData, {
       headers:{
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data",
+        "Authorization": "Token fc43694f50a28b70c8ad672d5a1d5fe830485c67"
       }
     })
     .then(res => {
@@ -52,7 +50,7 @@ const PostCreate = () => {
       <Message danger message={error}/>
      )}
      {thumbnail && <Message info message={`Selected image: ${thumbnail.name}`} />}
-     {thumbnail && <input value={thumbnail.name} disabled/>}
+     {/* {thumbnail && <input value={thumbnail.name} disabled/>} */}
       <Form >
         <Form.Field>
           <label>Title</label>
