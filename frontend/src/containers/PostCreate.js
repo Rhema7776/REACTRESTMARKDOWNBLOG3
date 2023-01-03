@@ -2,7 +2,12 @@ import React, {useRef, useState } from 'react'
 import {Header, Button, Checkbox, Form } from 'semantic-ui-react'
 import Message from '../components/Message';
 import axios from 'axios';
-import {history} from '../helpers'
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+import {history} from '../helpers';
+import {api} from "../api"
+
 
 const PostCreate = () => {
   const [error, setError] = useState(null);
@@ -12,35 +17,33 @@ const PostCreate = () => {
   const [markdown, setMarkdown] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
 
+  const mdParser = new MarkdownIt(/* Markdown-it options */);
   const fileInputRef = useRef()
 
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    // console.log(title)
+    console.log(markdown)
     const formData = new FormData()
     formData.append("thumbnail", thumbnail)
     formData.append("title", title)
     formData.append("content", markdown)
-    console.log(formData);
+    
     axios
-      .post('http://127.0.0.1:8000/api/posts/create/', formData, {
+      .post(api.posts.create, formData, {
       headers:{
         "Content-Type": "multipart/form-data",
         "Authorization": "Token fc43694f50a28b70c8ad672d5a1d5fe830485c67"
       }
     })
     .then(res => {
-      console.log(res)
       setLoading(false);
-      history.push('./posts')
+      history.push('/')
       //if this is a successfull response we ,redirect back to PostList
     })
     .catch(err => {
       setLoading(false);
-      console.log(err)
       setError(err.message || err)
-
     })
   }
   return (
@@ -58,11 +61,12 @@ const PostCreate = () => {
            value={title} 
            onChange={e => setTitle(e.target.value)} />
         </Form.Field>
-        <Form.TextArea
-         label='Markdown Content'
-         placeholder='This is your post content...'
-         value={markdown}
-         onChange={e => setMarkdown(e.target.value)} />      
+         
+        <MdEditor 
+          style={{ height: '500px' }}
+          renderHTML={text => mdParser.render(text)} 
+          onChange={({text}) => setMarkdown(text)} 
+        />   
         <Form.Field>
           {/* {thumbnail && <input value={thumbnail.name} disabled/>} */}
           <Button

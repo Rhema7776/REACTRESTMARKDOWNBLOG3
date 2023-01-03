@@ -8,7 +8,6 @@ import Layout from './containers/Layout';
 import PostList from './containers/PostList';
 import PostCreate from './containers/PostCreate';
 import PostDetail from './containers/PostDetail';
-import PostDelete from './containers/PostDelete';
 import PostUpdate from './containers/PostUpdate';
 
 
@@ -20,9 +19,8 @@ function App() {
             <Routes>
               <Route index element={<PostList/>}/>
               <Route path = '/create' element={<PostCreate/>}/>
-              <Route path = '/posts/:postSlug'  index element={<PostDetail/>}/>
+              <Route exact path = '/posts/:postSlug'  index element={<PostDetail/>}/>
               <Route path = '/posts/:postSlug/update'  index element={<PostUpdate/>}/>
-              <Route path = '/posts/:postSlug/delete'  index element={<PostDelete/>}/>
             </Routes>
           </Layout>
        
