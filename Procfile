@@ -1,0 +1,1 @@
+web: gunicorn backendrest.wsgi --log-file -
